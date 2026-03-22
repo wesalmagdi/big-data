@@ -1,0 +1,2 @@
+docker pull wesalsoliman/cosmetics-analytics:latest
+docker run -it --name cosmetics-analytics-container wesalsoliman/cosmetics-analytics:latest
