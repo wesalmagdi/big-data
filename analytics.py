@@ -8,12 +8,12 @@ num_rows = len(df)
 num_columns = df.shape[1]
 
 
-insight1 = f"The preprocessed dataset contains {num_rows} rows and {num_columns} columns."
+insight1 = f"after preprocessing, the dataset contains {num_rows} rows and {num_columns} columns"
 
 insight2 = "mean values of features:"
 insight2 += df.mean(numeric_only=True).to_string()
 
-insight3 = f"after preprocessing, the dataset contains {num_columns} transformed features"
+insight3 = f"after preprocessing, the dataset contains {num_columns} features"
 
 with open("insight1.txt", "w") as f:
     f.write(insight1)
