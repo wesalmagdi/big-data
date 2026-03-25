@@ -4,24 +4,18 @@ import subprocess
 
 file_path = sys.argv[1]
 df = pd.read_csv(file_path)
-num_rows = len(df)
-num_columns = df.shape[1]
 
-
-insight1 = f"after preprocessing, the dataset contains {num_rows} rows and {num_columns} columns"
-
-insight2 = "mean values of features:"
-insight2 += df.mean(numeric_only=True).to_string()
-
-insight3 = f"after preprocessing, the dataset contains {num_columns} features"
-
+# Example insights
 with open("insight1.txt", "w") as f:
-    f.write(insight1)
+    f.write(f"Dataset shape: {df.shape}")
 
 with open("insight2.txt", "w") as f:
-    f.write(insight2)
+    f.write(f"Columns: {list(df.columns)}")
 
 with open("insight3.txt", "w") as f:
-    f.write(insight3)
+    f.write(f"Summary:\n{df.describe().to_string()}")
+
+print("Analytics completed.")
+
 
 subprocess.run(["python", "visualize.py", file_path])

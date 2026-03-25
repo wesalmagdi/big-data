@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import subprocess
 
 file_path = sys.argv[1]
 df = pd.read_csv(file_path)
@@ -22,3 +23,5 @@ ax[2].set_title('Correlation Heatmap')
 plt.tight_layout()
 plt.savefig("summary_plot.png")
 plt.show()
+
+subprocess.run(["python", "cluster.py", file_path])

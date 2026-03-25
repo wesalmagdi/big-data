@@ -180,7 +180,7 @@ def main():
     df = dimensionality_reduction(df)
     df = discretization(df)
     output_file = save_data(df)
-    subprocess.run(['python','analytics.py'])
+    subprocess.run(["python", "analytics.py", output_file])
 
 if __name__ == "__main__":
     main()
