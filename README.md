@@ -50,6 +50,7 @@ We use **Python 3.11-slim** as the base image and install all necessary packages
 - scipy  
 - requests  
 
+
 **Dockerfile highlights:**
 
 ```dockerfile
@@ -66,7 +67,6 @@ COPY . /app/pipeline/
 
 # Start interactive bash by default
 CMD ["/bin/bash"]
-
 
 ### **🔄 Automated Execution Flow**
 
