@@ -51,7 +51,7 @@ We use **Python 3.11-slim** as the base image and install all necessary packages
 - requests  
 
 
-Automated Execution Flow
+## Automated Execution Flow
 
 The project is designed to run as a continuous pipeline. By executing the `summary.sh` script, the following automated chain reaction occurs:
 
@@ -84,6 +84,7 @@ Snippet from `results/clusters.txt`:
 Cluster 0: 48191 samples
 Cluster 1: 20 samples
 Cluster 2: 15873 samples
+```
 
 ### 2. Statistical Insights (`insight1.txt`)
 The `analytics.py` script  extracted a structural summary confirming that the data was successfully normalized via **Z-score scaling**. This ensures that the K-Means algorithm  treats all features with equal weight.
@@ -118,7 +119,7 @@ COPY . /app/pipeline/
 
 # Start interactive bash by default
 CMD ["/bin/bash"]
-
+```
 
 
 
