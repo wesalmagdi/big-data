@@ -75,17 +75,7 @@ CMD ["/bin/bash"]
 
 
 ### **🔄 Automated Execution Flow**
-=======
 ---
-
-## Automated Execution Flow
->>>>>>> 3af76d55c13a743b52562911cf173e57bc0b666f
-=======
----
-
-## Automated Execution Flow
->>>>>>> 3af76d55c13a743b52562911cf173e57bc0b666f
-
 The project is designed to run as a continuous pipeline. By executing the `summary.sh` script, the following automated chain reaction occurs:
 
 1. Initiation: `bash summary.sh` initiates the process from the host machine.
