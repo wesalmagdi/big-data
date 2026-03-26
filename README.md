@@ -51,6 +51,7 @@ We use **Python 3.11-slim** as the base image and install all necessary packages
 - requests  
 
 
+```markdown
 **Dockerfile highlights:**
 
 ```dockerfile
@@ -67,6 +68,7 @@ COPY . /app/pipeline/
 
 # Start interactive bash by default
 CMD ["/bin/bash"]
+
 
 ### **🔄 Automated Execution Flow**
 
