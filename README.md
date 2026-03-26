@@ -66,3 +66,61 @@ COPY . /app/pipeline/
 
 # Start interactive bash by default
 CMD ["/bin/bash"]
+
+### **Automated Execution Flow**
+
+The project is designed to run as a continuous pipeline. By executing the `summary.sh` script, the following automated chain reaction occurs:
+
+1. **`bash summary.sh`** initiates the process from the host machine.
+2. **Container Trigger:** `summary.sh` commands the Docker container to execute the first script.
+3. **The Python Chain:**
+    * **`ingest.py`** runs → calls **`preprocess.py`**.
+    * **`preprocess.py`** runs → calls **`analytics.py`**.
+    * **`analytics.py`** runs → calls **`visualize.py`**.
+    * **`visualize.py`** runs → calls **`cluster.py`**.
+4. **Member 4 Completion:** `cluster.py` finishes the computation and saves `clusters.txt`.
+5. **Data Extraction:** Once the Python chain is complete, `summary.sh` automatically reaches into the container, copies the generated `.txt`, `.csv`, and `.png` files, and saves them into the local `results/` folder on your computer.
+
+
+
+---
+
+## **Sample Outputs**
+
+This section demonstrates the successful execution of the full analytics pipeline. All outputs were automatically extracted into the `results/` folder via the `summary.sh` automation script.
+
+### **1. K-Means Clustering Results **
+The `cluster.py` script successfully partitioned the cosmetics dataset into three distinct groups. The distribution below shows a primary category, a secondary formulation group, and a small set of outliers.
+
+| Category | Sample Count | Significance |
+| :--- | :--- | :--- |
+| **Cluster 0** | 48,191 | Standard mass-market formulations |
+| **Cluster 1** | 20 | Outliers / Specialized niche products |
+| **Cluster 2** | 15,873 | Secondary ingredient profile group |
+
+**Snippet from `results/clusters.txt`:**
+> `Cluster 0: 48191 samples`  
+> `Cluster 1: 20 samples`  
+> `Cluster 2: 15873 samples`
+
+
+
+### **2. Statistical Insights (`insight1.txt`)**
+The `analytics.py` script extracted the following structural summary of the processed dataset. This confirms the successful normalization of key numerical features (`code` and `completeness`) for the clustering phase.
+
+* **Dataset Dimensions:** 64,084 rows × 10 columns
+* **Target Features:** `creator`, `created_datetime`, `last_modified_by`, `last_updated_t`, `product_name`, `brand`, `country`, `code`, `completeness`, `brand_popularity`.
+
+**Data Summary Table:**
+
+| Metric | `code` | `completeness` |
+| :--- | :--- | :--- |
+| **Count** | 64,084 | 64,084 |
+| **Mean** | ~0.00 | ~0.00 |
+| **Std Dev** | 1.00 | 1.00 |
+| **Min** | -54.49 | -1.23 |
+| **Max** | 53.31 | 3.88 |
+
+> **Note:** The mean and standard deviation confirm that the data was successfully scaled using **StandardScaler** before being passed to the K-Means algorithm.
+
+
