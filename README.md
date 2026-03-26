@@ -48,8 +48,29 @@ We use **Python 3.11-slim** as the base image and install all necessary packages
 - seaborn  
 - scikit-learn  
 - scipy  
-- requests  
+- requests
 
+---
+
+## **Dockerfile highlights:**
+```markdown
+
+```dockerfile
+FROM python:3.11-slim
+
+# Install dependencies
+RUN pip install pandas numpy matplotlib seaborn scikit-learn scipy requests
+
+# Set working directory
+WORKDIR /app/pipeline
+
+# Copy all scripts into container
+COPY . /app/pipeline/
+
+# Start interactive bash by default
+CMD ["/bin/bash"]
+```
+---
 
 ## Automated Execution Flow
 
@@ -65,7 +86,7 @@ The project is designed to run as a continuous pipeline. By executing the `summa
 4. Integrator Completion: `cluster.py` finishes the core machine learning computation and saves the final `clusters.txt` output.
 5. Data Extraction: Once the Python chain is complete, `summary.sh` automatically reaches into the container, copies the generated `.txt`, `.csv`, and `.png` files, and saves them into the local `results/` folder on your computer.
 
-
+---
 ## Sample Outputs
 
 This section demonstrates the successful execution of the full analytics pipeline. All outputs were automatically extracted into the `results/` folder via the `summary.sh` automation script.
@@ -102,24 +123,7 @@ The `analytics.py` script  extracted a structural summary confirming that the da
 | **Min** | -54.49 | -1.23 |
 | **Max** | 53.31 | 3.88 |
 
-```markdown
-**Dockerfile highlights:**
 
-```dockerfile
-FROM python:3.11-slim
-
-# Install dependencies
-RUN pip install pandas numpy matplotlib seaborn scikit-learn scipy requests
-
-# Set working directory
-WORKDIR /app/pipeline
-
-# Copy all scripts into container
-COPY . /app/pipeline/
-
-# Start interactive bash by default
-CMD ["/bin/bash"]
-```
 
 
 
