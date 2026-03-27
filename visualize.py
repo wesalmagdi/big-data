@@ -14,6 +14,7 @@ top_brands = df['brand'].value_counts().nlargest(5).index
 sns.countplot(x='brand', data=df[df['brand'].isin(top_brands)], ax=ax[0],
               order=top_brands)
 ax[0].set_title('Top 5 Brands Count')
+ax[0].set_xticklabels(ax[0].get_xticklabels(), rotation=45, ha='right')
 
 top_countries = df['country'].value_counts().nlargest(5)
 top_countries.plot.pie(ax=ax[1], autopct='%1.1f%%')
