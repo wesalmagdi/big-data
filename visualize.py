@@ -9,13 +9,17 @@ df = pd.read_csv(file_path)
 
 fig, ax = plt.subplots(1, 3, figsize=(18, 5))
 
-sns.countplot(x='brand', data=df, ax=ax[0])
-ax[0].set_title('Brand Count')
+top_brands = df['brand'].value_counts().nlargest(5).index
+sns.countplot(x='brand', data=df[df['brand'].isin(top_brands)], ax=ax[0],
+              order=top_brands)
+ax[0].set_title('Top 5 Brands Count')
 
-df['country'].value_counts().plot.pie(ax=ax[1])
-ax[1].set_title('Country Proportion')
+top_countries = df['country'].value_counts().nlargest(5)
+top_countries.plot.pie(ax=ax[1], autopct='%1.1f%%')
+ax[1].set_title('Top 5 Countries Proportion')
 
 cross_tab = pd.crosstab(df['brand'], df['country'])
+cross_tab = cross_tab.loc[top_brands, top_countries.index]
 sns.heatmap(cross_tab, annot=True, ax=ax[2])
 ax[2].set_title('Brand vs Country Heatmap')
 
