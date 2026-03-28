@@ -76,11 +76,11 @@ CMD ["/bin/bash"]
 ## **Docker Usage:**
 1. Pull from Docker Hub
 ```dockerfile
-   docker pull <your-dockerhub-username>/cosmetics-analytics:latest
+   docker pull wesalsoliman/cosmetics-analytics:latest
 ```
 2. Run Interactive Container
  ```dockerfile
-   docker run -it <your-dockerhub-username>/cosmetics-analytics:latest
+   docker run -it wesalsoliman/cosmetics-analytics:latest
  ```
 **Build and Run Locally**
 1. Navigate to the project root:
