@@ -95,17 +95,17 @@ CMD ["/bin/bash"]
 ```dockerfile
    docker run -it cosmetics-analytics
 ```
-### **🔄 Automated Execution Flow**
+### ** Automated Execution Flow**
 ---
 The project is designed to run as a continuous pipeline. By executing the `summary.sh` script, the following automated chain reaction occurs:
 
 1. Initiation: `bash summary.sh` initiates the process from the host machine.
 2. Container Trigger: `summary.sh` commands the Docker container to execute the first script.
 3. The Python Chain:
-    * `ingest.py` runs ➡️ calls `preprocess.py`.
-    * `preprocess.py` runs ➡️ calls `analytics.py`.
-    * `analytics.py` runs ➡️ calls `visualize.py`.
-    * `visualize.py` runs ➡️ calls `cluster.py`.
+    * `ingest.py` runs -> calls `preprocess.py`.
+    * `preprocess.py` runs -> calls `analytics.py`.
+    * `analytics.py` runs -> calls `visualize.py`.
+    * `visualize.py` runs -> calls `cluster.py`.
 4. Integrator Completion: `cluster.py` finishes the core machine learning computation and saves the final `clusters.txt` output.
 5. Data Extraction: Once the Python chain is complete, `summary.sh` automatically reaches into the container, copies the generated `.txt`, `.csv`, and `.png` files, and saves them into the local `results/` folder on your computer.
 
