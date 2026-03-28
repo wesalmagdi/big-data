@@ -78,22 +78,23 @@ CMD ["/bin/bash"]
 ```dockerfile
    docker pull <your-dockerhub-username>/cosmetics-analytics:latest
 ```
-3. Run Interactive Container
-   ```dockerfile
+2. Run Interactive Container
+ ```dockerfile
    docker run -it <your-dockerhub-username>/cosmetics-analytics:latest
-   ```
+ ```
 ##**Build and Run Locally**
 1. Navigate to the project root:
-   ```dockerfile
+```dockerfile
    cd customer-analytics
 ```
 2. Build Docker Image
-   ```dockerfile
+```dockerfile
    docker build -t cosmetics-analytics .
 ```
 3. Run Container
-   ```dockerfile
+```dockerfile
    docker run -it cosmetics-analytics
+```
 ### **🔄 Automated Execution Flow**
 ---
 The project is designed to run as a continuous pipeline. By executing the `summary.sh` script, the following automated chain reaction occurs:
