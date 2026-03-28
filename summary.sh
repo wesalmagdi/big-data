@@ -10,7 +10,7 @@ docker build -t $IMAGE_NAME .
 
 mkdir -p $HOST_RESULTS
 
-docker run --name $CONTAINER_NAME -v "$(pwd):/app/pipeline" $IMAGE_NAME python ingest.py $DATA_FILE
+docker run --name $CONTAINER_NAME python ingest.py $DATA_FILE
 
 echo "Copying output files from container..."
 
