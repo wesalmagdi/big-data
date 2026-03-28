@@ -11,7 +11,7 @@
 
 ## **Project Overview**
 
-This project demonstrates a **data analytics pipeline** using Python and Docker.  
+This project implements an end-to-end, containerized data analytics pipeline for large-scale cosmetic product data, covering ingestion, transformation, statistical analysis, visualization, and unsupervised learning.
 The pipeline processes a raw dataset (`en.openbeautyfacts.org.products.csv`) and performs the following tasks:
 
 1. **Ingestion:** Load raw dataset from CSV/ZIP and save as `data_raw.csv`.  
@@ -73,6 +73,20 @@ COPY . /app/pipeline/
 CMD ["/bin/bash"]
 ```
 
+## **Docker Usage:**
+1. Pull from Docker Hub
+   docker pull <your-dockerhub-username>/cosmetics-analytics:latest
+2. Run Interactive Container
+   docker run -it <your-dockerhub-username>/cosmetics-analytics:latest
+
+##**Build and Run Locally**
+1. Navigate to the project root:
+   cd customer-analytics
+2. Build Docker Image
+   docker build -t cosmetics-analytics .
+3. Run Container
+   docker run -it cosmetics-analytics
+
 
 ### **🔄 Automated Execution Flow**
 ---
@@ -124,6 +138,8 @@ The `analytics.py` script  extracted a structural summary confirming that the da
 | **Std Dev** | **1.00** | **1.00** |
 | **Min** | -54.49 | -1.23 |
 | **Max** | 53.31 | 3.88 |
+<img width="1800" height="500" alt="summary_plot" src="https://github.com/user-attachments/assets/b8132d02-4529-4eae-bb8e-58cba11b556e" />
+
 
 
 
