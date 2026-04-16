@@ -122,14 +122,12 @@ def feature_transformation(df):
     
     code_columns = [col for col in df.columns if 'code' in col.lower() or 'id' in col.lower()]
     for col in code_columns[:]:  
-        if df[col].dtype == 'object' or df[col].dtype == 'string':
-            df[f'{col}_length'] = df[col].astype(str).str.len()
-            print(f"Extracted length feature from '{col}'")
+        df[f'{col}_length'] = df[col].astype(str).str.len()
+        print(f"Extracted length feature from '{col}'")
     
     return df
 
 def dimensionality_reduction(df):
-    original_cols = df.shape[1]
     
     numeric_cols = df.select_dtypes(include=[np.number]).columns
     
